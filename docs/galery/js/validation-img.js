@@ -30,7 +30,7 @@ imgArray[9] = new Image();
 imgArray[9].src = "img/10.jpg";
 
 var imgArray5 = [];
-var position ;
+var position;
 
 function start() {
   var arrayNums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -52,15 +52,18 @@ function start() {
 }
 
 function next() {
+  document.getElementById("image").style.marginLeft ="0px";
   if (position < 4) {
     activateprev();
     position++;
     document.getElementById("image").src = imgArray[imgArray5[position]].src;
+    for (var i = 0; i <= 908; i++) {
+      document.getElementById("image").style.marginLeft = i + "px";
+    }
   }
   if (position == 4) {
     deactivatenext();
   }
-  console.log(position);
 }
 
 function prev() {
@@ -68,16 +71,18 @@ function prev() {
     activatenext();
     position--;
     document.getElementById("image").src = imgArray[imgArray5[position]].src;
+    for (var i = 908; i >= -908; i--) {
+      document.getElementById("image").style.marginLeft = i + "px";
+    }
   }
   if (position == 0) {
     deactivateprev();
   }
-  console.log(position);
 }
 
 function deactivateprev() {
   document.getElementById("btn-prev").disabled = true;
-  document.getElementById("btn-prev").style.opacity = "0.2";  
+  document.getElementById("btn-prev").style.opacity = "0.2";
 }
 
 function activateprev() {

@@ -16,6 +16,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Cambay', sans-serif;
 }
 
 h3 {
