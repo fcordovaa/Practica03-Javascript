@@ -1,10 +1,3 @@
-var id = false;
-var name = false;
-var lastname = false;
-var date = false;
-var email = false;
-var password = false;
-
 /*General Validations*/
 
 function validateRequiredInput() {
@@ -75,6 +68,14 @@ function validateOnlyText(evt) {
   return true;
 }
 
+function checkDate(evt) {
+  var charCode = evt.which ? evt.which : event.keyCode;
+  if (!(charCode >= 47 && charCode <= 57)) {
+    alert("Ingrese solo numeros.");
+    return false;
+  }
+}
+
 /* Clean Form */
 
 function cleanForm() {
@@ -84,7 +85,7 @@ function cleanForm() {
 /*Validations for type*/
 
 function validateID() {
-  id = false;
+  var id = false;
   var elemento = document.getElementById("id");
   var id_numbers = [];
   if (elemento.value.length == 10) {
@@ -121,7 +122,7 @@ function validateID() {
 }
 
 function validateName() {
-  name = false;
+  var name = false;
   var elemento = document.getElementById("name");
   if (elemento.value.length > 2) {
     name = true;
@@ -134,7 +135,7 @@ function validateName() {
 }
 
 function validateLastname() {
-  lastname = false;
+  var lastname = false;
   var elemento = document.getElementById("lastname");
   if (elemento.value.length > 2) {
     lastname = true;
@@ -147,7 +148,7 @@ function validateLastname() {
 }
 
 function validateDate() {
-  date = false;
+  var date = false;
   var elemento = document.getElementById("date");
   var fecha = elemento.value.split("/");
   if (elemento.value.length != 10) {
@@ -243,7 +244,7 @@ function validateDate() {
 }
 
 function validateEmail() {
-  email = false;
+  var email = false;
   var elemento = document.getElementById("email");
   var correo = elemento.value.split("@");
   if (correo.length == 2) {
@@ -273,7 +274,7 @@ function validateEmail() {
 }
 
 function validatePassword() {
-  password = false;
+  var password = false;
   var elemento = document.getElementById("password");
   if (elemento.value.length >= 8) {
     document.getElementById("mensajePassword").innerHTML = "";
@@ -304,12 +305,4 @@ function validatePassword() {
   if (banCaracter && banMayus && banMinus) password = true;
 
   return true;
-}
-
-function checkDate(evt) {
-  var charCode = evt.which ? evt.which : event.keyCode;
-  if (!(charCode >= 47 && charCode <= 57)) {
-    alert("Ingrese solo numeros.");
-    return false;
-  }
 }
