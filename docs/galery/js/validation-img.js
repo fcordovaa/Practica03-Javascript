@@ -30,7 +30,7 @@ imgArray[9] = new Image();
 imgArray[9].src = "img/10.jpg";
 
 var imgArray5 = [];
-var position;
+var position = 0;
 
 function start() {
   var arrayNums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -57,8 +57,9 @@ function next() {
     activateprev();
     position++;
     document.getElementById("image").src = imgArray[imgArray5[position]].src;
+    document.getElementById("image").style.disabled = true;
     for (var i = 0; i <= 908; i++) {
-      document.getElementById("image").style.marginLeft = i + "px";
+      document.getElementById("image").style.cliPath = "inset(0px 0px 0px" + i + "px)";
     }
   }
   if (position == 4) {
@@ -71,8 +72,8 @@ function prev() {
     activatenext();
     position--;
     document.getElementById("image").src = imgArray[imgArray5[position]].src;
-    for (var i = 908; i >= -908; i--) {
-      document.getElementById("image").style.marginLeft = i + "px";
+    for (var i = 908; i >=0 ; i--) {
+      document.getElementById("image").style.cliPath = "inset(0px" + i + "0px 0px 0px)";
     }
   }
   if (position == 0) {
