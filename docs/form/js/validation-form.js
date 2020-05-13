@@ -85,7 +85,6 @@ function cleanForm() {
 /*Validations for type*/
 
 function validateID() {
-  var id = false;
   var elemento = document.getElementById("id");
   var id_numbers = [];
   if (elemento.value.length == 10) {
@@ -105,44 +104,40 @@ function validateID() {
       varID += id_numbers[i];
       varID %= 10;
       if (varID == 0) {
-        id = true;
+        document.getElementById("message-id").innerHTML = "";
         return true;
       } else {
-        id = false;
-        document.getElementById("message-id").innerHTML =
-          "<br>Numero de cedula invalida";
+        document.getElementById("message-id").innerHTML = "<br>Numero de cedula invalida";
       }
     }
   } else {
-    id = false;
-    document.getElementById("message-id").innerHTML =
-      "<br>La cedula no se compone de 10 digitos";
+    document.getElementById("message-id").innerHTML = "<br>La cedula no se compone de 10 digitos";
   }
   return false;
 }
 
 function validateName() {
-  var name = false;
   var elemento = document.getElementById("name");
-  if (elemento.value.length > 2) {
-    name = true;
+  if (elemento.value.indexOf(" ") == -1){
+    document.getElementById("message-name").innerHTML = "<br>Ingrese dos nombres";
+  } else if(elemento.value.indexOf(" ") >= 3 && elemento.value.substring(elemento.value.indexOf(" "), elemento.value.length).length > 3 ) {
+    document.getElementById("message-name").innerHTML ="";
     return true;
   } else {
-    document.getElementById("message-name").innerHTML =
-      "<br>Ingrese nombre valido";
+    document.getElementById("message-name").innerHTML ="<br> Ingresar un nombre Valido";
   }
   return false;
 }
 
 function validateLastname() {
-  var lastname = false;
   var elemento = document.getElementById("lastname");
-  if (elemento.value.length > 2) {
-    lastname = true;
+  if (elemento.value.indexOf(" ") == -1){
+    document.getElementById("message-last").innerHTML = "<br>Ingrese dos apellidos";
+  } else if(elemento.value.indexOf(" ") >= 3 && elemento.value.substring(elemento.value.indexOf(" "), elemento.value.length).length > 3 ) {
+    document.getElementById("message-lastname").innerHTML ="";
     return true;
   } else {
-    document.getElementById("message-lastname").innerHTML =
-      "<br>Ingrese apellido valido";
+    document.getElementById("message-lastname").innerHTML ="<br> Ingresar un apellido Valido";
   }
   return false;
 }
@@ -152,8 +147,7 @@ function validateDate() {
   var elemento = document.getElementById("date");
   var fecha = elemento.value.split("/");
   if (elemento.value.length != 10) {
-    document.getElementById("message-date").innerHTML =
-      "<br>Ingrese fecha valida: 04/11/1990";
+    document.getElementById("message-date").innerHTML ="<br>Ingrese fecha valida: 04/11/1990";
     return false;
   }
   try {
