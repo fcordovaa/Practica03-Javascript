@@ -21,17 +21,17 @@ function validateRequiredInput() {
       if (elemento.id == "phone") {
         document.getElementById("message-phone").innerHTML = "<br>El telefono esta vacio";
       }
-      if (elemento.id == "direccion") {
+      if (elemento.id == "date") {
         document.getElementById("message-date").innerHTML = "<br>La fecha de nacimiento esta vacia";
       }
-      if (elemento.id == "telefono") {
+      if (elemento.id == "email") {
         document.getElementById("message-email").innerHTML = "<br>El email esta vacio";
       }
       if (elemento.type == "password") {
         document.getElementById("message-password").innerHTML = "<br>La contraseña esta vacia";
       }
     }
-    flag = false;
+    return flag;
   }
   if (!flag) {
     alert("Error: revisar los comentario");
@@ -118,185 +118,143 @@ function validateID() {
 
 function validateName() {
   var elemento = document.getElementById("name");
-  if (elemento.value.indexOf(" ") == -1){
+  if (elemento.value.indexOf(" ") == -1) {
     document.getElementById("message-name").innerHTML = "<br>Ingrese dos nombres";
-  } else if(elemento.value.indexOf(" ") >= 3 && elemento.value.substring(elemento.value.indexOf(" "), elemento.value.length).length > 3 ) {
-    document.getElementById("message-name").innerHTML ="";
+  } else if (elemento.value.indexOf(" ") >= 3 && elemento.value.substring(elemento.value.indexOf(" "), elemento.value.length).length > 3) {
+    document.getElementById("message-name").innerHTML = "";
     return true;
   } else {
-    document.getElementById("message-name").innerHTML ="<br> Ingresar un nombre Valido";
+    document.getElementById("message-name").innerHTML = "<br> Ingresar un nombre Valido";
   }
   return false;
 }
 
 function validateLastname() {
   var elemento = document.getElementById("lastname");
-  if (elemento.value.indexOf(" ") == -1){
-    document.getElementById("message-last").innerHTML = "<br>Ingrese dos apellidos";
-  } else if(elemento.value.indexOf(" ") >= 3 && elemento.value.substring(elemento.value.indexOf(" "), elemento.value.length).length > 3 ) {
-    document.getElementById("message-lastname").innerHTML ="";
+  if (elemento.value.indexOf(" ") == -1) {
+    document.getElementById("message-lastname").innerHTML = "<br>Ingrese dos apellidos";
+  } else if (elemento.value.indexOf(" ") >= 3 && elemento.value.substring(elemento.value.indexOf(" "), elemento.value.length).length > 3) {
+    document.getElementById("message-lastname").innerHTML = "";
     return true;
   } else {
-    document.getElementById("message-lastname").innerHTML ="<br> Ingresar un apellido Valido";
+    document.getElementById("message-lastname").innerHTML = "<br> Ingresar un apellido Valido";
   }
   return false;
 }
 
 function validateDate() {
-  var date = false;
   var elemento = document.getElementById("date");
-  var fecha = elemento.value.split("/");
-  if (elemento.value.length != 10) {
-    document.getElementById("message-date").innerHTML ="<br>Ingrese fecha valida: 04/11/1990";
-    return false;
-  }
-  try {
-    if (fecha.length == 3 && fecha[2].length == 4) {
-      var dia = fecha[0];
-      var mes = fecha[1];
-      var year = fecha[2];
-      var dmax;
-      if (year < 1000 || year > new Date().getFullYear()) {
-        alert("error año");
-        if (year > new Date().getFullYear())
-          document.getElementById("message-date").innerHTML =
-            "<br>El año no debe ser mayor al actual";
-        return false;
-      }
-      if (dia.length == 2 && mes.length == 2 && year.length == 4) {
-        switch (parseInt(mes)) {
-          case 1:
-            dmax = 31;
-            break;
-          case 2:
-            if (year % 4 == 0) dmax = 29;
-            else dmax = 28;
-            break;
-          case 3:
-            dmax = 31;
-            break;
-          case 4:
-            dmax = 30;
-            break;
-          case 5:
-            dmax = 31;
-            break;
-          case 6:
-            dmax = 30;
-            break;
-          case 7:
-            dmax = 31;
-            break;
-          case 8:
-            dmax = 31;
-            break;
-          case 9:
-            dmax = 30;
-            break;
-          case 10:
-            dmax = 31;
-            break;
-          case 11:
-            dmax = 30;
-            break;
-          case 12:
-            dmax = 31;
-            break;
-          default:
-            alert("error mes");
-            document.getElementById("message-date").innerHTML =
-              "<br>El mes ingresado no existe";
-            return false;
-        }
-        if (dia < 1 || dia > dmax) {
-          alert("error dia");
-          document.getElementById("message-date").innerHTML =
-            "<br>El dia ingresado no existe";
-          return false;
-        }
-      } else {
-        alert("Error fechas");
-        estado = false;
-      }
-    }
-    if (
-      (fecha.length != 3 || fecha[2].length < 4) &&
-      elemento.value.length == 10
-    ) {
-      alert("Error fecha");
-      document.getElementById("message-date").innerHTML =
-        "<br>Ingrese fecha valida: 04/11/1990";
-      return false;
-    }
-  } catch (err) {
-    alert("Error fechas");
-    return false;
-  }
-  date = true;
+  var state = true;
+  if (elemento.value.length == 10) {
+    var date = elemento.value.split("/");
+    var day = date[0];
+    var month = date[1];
+    var year = date[2];
+    var maxDay = 31;
 
-  return true;
+    /* Validate Year */
+
+    if (year > new Date().getFullYear()) {
+      document.getElementById("message-date").innerHTML = "<br>El año no debe ser mayor al actual";
+      state = false;
+    } else if (year < 1900) {
+      document.getElementById("message-date").innerHTML = "<br>El año no debe ser menor a 1900";
+      state = false;
+    }
+
+    /* Validate Month */
+
+    switch (parseInt(month)) {
+      case 1:
+        maxDay = 31;
+        break;
+      case 2:
+        if (year % 4 == 0) maxDay = 29;
+        else maxDay = 28;
+        break;
+      case 3:
+        maxDay = 31;
+        break;
+      case 4:
+        maxDay = 30;
+        break;
+      case 5:
+        maxDay = 31;
+        break;
+      case 6:
+        maxDay = 30;
+        break;
+      case 7:
+        maxDay = 31;
+        break;
+      case 8:
+        maxDay = 31;
+        break;
+      case 9:
+        maxDay = 30;
+        break;
+      case 10:
+        maxDay = 31;
+        break;
+      case 11:
+        maxDay = 30;
+        break;
+      case 12:
+        maxDay = 31;
+        break;
+      default:
+        document.getElementById("message-date").innerHTML = "<br>El mes ingresado no existe";
+        state = false;
+    }
+
+    /* Validate Day */
+
+    if (day < 1 || day > maxDay) {
+      document.getElementById("message-date").innerHTML = "<br>El dia ingresado no existe";
+      state = false;
+    }
+  }
+  if (state == true) document.getElementById("message-date").innerHTML = ""; return true;
+  return false;
 }
 
 function validateEmail() {
-  var email = false;
   var elemento = document.getElementById("email");
-  var correo = elemento.value.split("@");
-  if (correo.length == 2) {
-    if (correo[0].length < 3) {
-      document.getElementById("message-email").innerHTML =
-        "<br>Posibles direcciones validas 123@ups.edu.ec ; 123@est.ups.edu.ec";
-      return false;
-    }
-    if (
-      correo[1].localeCompare("est.ups.edu.ec") == "0" ||
-      correo[1].localeCompare("ups.edu.ec") == "0"
-    ) {
-      document.getElementById("message-email").innerHTML = "";
-    } else {
-      document.getElementById("message-email").innerHTML =
-        "<br>@ups.edu.ec <br> @est.ups.edu.ec";
-      return false;
-    }
-  } else {
-    document.getElementById("message-email").innerHTML =
-      "<br>Direccion no valido 123@ups.edu.ec <br>Direccion no valido 123@est.ups.edu.ec";
-    return false;
+  var email = elemento.value.split("@");
+  if (email[0].length < 3) {
+    document.getElementById("message-email").innerHTML = "<br>El correo debe tener minimo 3 caracteres antes del @";
   }
-  email = true;
-
-  return true;
+  if (email[1].localeCompare("est.ups.edu.ec") == "0" || email[1].localeCompare("ups.edu.ec") == "0") {
+    document.getElementById("message-email").innerHTML = "";
+    return true;
+  } else {
+    document.getElementById("message-email").innerHTML = "<br>Posibles direcciones validas 123@ups.edu.ec ; 123@est.ups.edu.ec";
+  }
+  return false;
 }
 
 function validatePassword() {
-  var password = false;
   var elemento = document.getElementById("password");
   if (elemento.value.length >= 8) {
-    document.getElementById("mensajePassword").innerHTML = "";
-    var banCaracter = false;
-    var banMayus = false;
-    var banMinus = false;
+    document.getElementById("message-password").innerHTML = "";
+    var character = false;
+    var upperLetter = false;
+    var lowerLetter = false;
     for (var i = 0; i < elemento.value.length; i++) {
       var codigo = elemento.value.charCodeAt(i);
-      if ((codigo == 95 || codigo == 64 || codigo == 36) && !banCaracter)
-        banCaracter = true;
-      else if (codigo > 64 && codigo < 91 && !banMayus) banMayus = true;
-      else if (codigo > 96 && codigo < 123 && !banMinus) banMinus = true;
+      if ((codigo == 95 || codigo == 64 || codigo == 36) && !character) character = true;
+      else if (codigo > 64 && codigo < 91 && !upperLetter) upperLetter = true;
+      else if (codigo > 96 && codigo < 123 && !lowerLetter) lowerLetter = true;
     }
-    if (!banCaracter)
-      document.getElementById("mensajePassword").innerHTML =
-        "<br>Debe contener un caracter especial @ _ $";
-    if (!banMayus)
-      document.getElementById("mensajePassword").innerHTML =
-        "<br>Debe contener una Mayuscula";
-    if (!banMinus)
-      document.getElementById("mensajePassword").innerHTML =
-        "<br>Debe contener una minuscula";
+    if (!character)
+      document.getElementById("message-password").innerHTML = "<br>Debe contener un caracter especial @ _ $";
+    if (!upperLetter)
+      document.getElementById("message-password").innerHTML = "<br>Debe contener una Mayuscula";
+    if (!lowerLetter)
+      document.getElementById("message-password").innerHTML = "<br>Debe contener una minuscula";
   } else {
-    document.getElementById("mensajePassword").innerHTML =
-      "<br>Contraseña debe tener minimo 8 caracteres";
-    return false;
+    document.getElementById("message-password").innerHTML = "<br>Contraseña debe tener minimo 8 caracteres";
   }
-  if (banCaracter && banMayus && banMinus) password = true;
-
-  return true;
+  if (character && upperLetter && lowerLetter) return true;
+  return false;
 }
