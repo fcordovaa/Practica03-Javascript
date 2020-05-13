@@ -15,53 +15,50 @@
         <div class="container">
             <h3>Formulario registro</h3>
             <div class="group">
-                <input type="text" id="id" oninput="return validateID()"
-                    onkeypress="return validateOnlyNumbers(event)" maxlength="10" required/>
+                <input type="text" id="id" oninput="return validateID()" onkeypress="return validateOnlyNumbers(event)" maxlength="10"/>
                 <span class="bar"></span>
                 <label>Cedula:</label>
                 <span id="message-id" class="error"></span>
             </div>
             <div class="group">
-                <input type="text" id="name" oninput="return validateName()"
-                    onkeypress="return validateOnlyText(event)" minlength="3" required/>
+                <input type="text" id="name" oninput="return validateName()" onkeypress="return validateOnlyText(event)"/>
                 <span class="bar"></span>
                 <label>Nombres:</label>
                 <span id="message-name" class="error"></span>
             </div>
             <div class="group">
-                <input type="text" id="lastname" oninput="return validateLastname()" onkeypress="return validateOnlyText(event)" minlength="3" required/>
+                <input type="text" id="lastname" oninput="return validateLastname()" onkeypress="return validateOnlyText(event)"/>
                 <span class="bar"></span>
                 <label>Apellidos:</label>
                 <span id="message-lastname" class="error"></span>
             </div>
             <div class="group">
-                <input type="text" id="direction" required/>
+                <input type="text" id="direction"/>
                 <span class="bar"></span>
                 <label>Direccion:</label>
                 <span id="message-direction" class="error"></span>
             </div>
             <div class="group">
-                <input type="text" id="phone" onkeypress="return validateOnlyNumbers(event)" maxlength="10" required/>
+                <input type="text" id="phone" onkeypress="return validateOnlyNumbers(event)" maxlength="10"/>
                 <span class="bar"></span>
                 <label>Telefono:</label>
                 <span id="message-phone" class="error"></span>
             </div>
             <div class="group">
-                <input type="text" id="date" oninput="return validateDate()"
-                    onkeypress="return checkDate(event)" maxlength="10" required/>
+                <input type="text" id="date" oninput="return validateDate()" onkeypress="return checkDate(event)" maxlength="10"/>
                 <span class="bar"></span>
                 <label>Fecha nacimiento:</label>
                 <span id="message-date" class="error"></span>
             </div>
 
             <div class="group">
-                <input type="text" id="email" oninput="return validateEmail()" required/>
+                <input type="text" id="email" oninput="return validateEmail()"/>
                 <span class="bar"></span>
                 <label>Correo Electronico:</label>
                 <span id="message-email" class="error"></span>
             </div>
             <div class="group">
-                <input type="password" id="password" oninput="return validatePassword()" required/>
+                <input type="password" id="password" oninput="return validatePassword()"/>
                 <span class="bar"></span>
                 <label>Contraseña:</label>
                 <span id="message-password" class="error"></span>

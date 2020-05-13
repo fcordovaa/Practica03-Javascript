@@ -52,12 +52,10 @@ function start() {
 }
 
 function next() {
-  document.getElementById("image").style.marginLeft ="0px";
   if (position < 4) {
     activateprev();
     position++;
     document.getElementById("image").src = imgArray[imgArray5[position]].src;
-    document.getElementById("image").style.disabled = true;
     for (var i = 0; i <= 908; i++) {
       document.getElementById("image").style.cliPath = "inset(0px 0px 0px" + i + "px)";
     }
