@@ -30,11 +30,8 @@ function validateRequiredInput() {
       if (elemento.type == "password") {
         document.getElementById("message-password").innerHTML = "<br>La contraseña esta vacia";
       }
-    }
-    return flag;
-  }
-  if (!flag) {
-    alert("Error: revisar los comentario");
+      flag = false;
+    } else flag = true;
   }
   return flag;
 }
@@ -125,6 +122,7 @@ function validateName() {
     return true;
   } else {
     document.getElementById("message-name").innerHTML = "<br> Ingresar un nombre Valido";
+    return false;
   }
   return false;
 }
@@ -257,4 +255,13 @@ function validatePassword() {
   }
   if (character && upperLetter && lowerLetter) return true;
   return false;
+}
+
+function emptyInput() {
+  var check = document.getElementsByClassName("check")
+  var hidden = document.getElementByClassName("hidden");
+  if (check.value.length != 0) {
+    document.getElementById("message-direction").innerHTML = "<br>El año no debe ser mayor al actual";
+    hidden
+  }
 }

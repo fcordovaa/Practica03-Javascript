@@ -15,52 +15,52 @@
         <div class="container">
             <h3>Formulario registro</h3>
             <div class="group">
-                <input type="text" id="id" oninput="return validateID()" onkeypress="return validateOnlyNumbers(event)" maxlength="10"/>
+                <input type="text" id="id" class="check" oninput="return validateID()" oninput="return emptyInput()" onkeypress="return validateOnlyNumbers(event)" maxlength="10" required/>
                 <span class="bar"></span>
-                <label>Cedula:</label>
+                <label id="hidden">Cedula:</label>
                 <span id="message-id" class="error"></span>
             </div>
             <div class="group">
-                <input type="text" id="name" oninput="return validateName()" onkeypress="return validateOnlyText(event)"/>
+                <input type="text" id="name" class="check" oninput="return validateName()" onkeypress="return validateOnlyText(event)"/>
                 <span class="bar"></span>
-                <label>Nombres:</label>
+                <label class="hidden">Nombres:</label>
                 <span id="message-name" class="error"></span>
             </div>
             <div class="group">
-                <input type="text" id="lastname" oninput="return validateLastname()" onkeypress="return validateOnlyText(event)"/>
+                <input type="text" id="lastname" class="check" oninput="return validateLastname()" onkeypress="return validateOnlyText(event)"/>
                 <span class="bar"></span>
-                <label>Apellidos:</label>
+                <label class="hidden">Apellidos:</label>
                 <span id="message-lastname" class="error"></span>
             </div>
             <div class="group">
-                <input type="text" id="direction"/>
+                <input type="text" id="direction"class="check" />
                 <span class="bar"></span>
-                <label>Direccion:</label>
+                <label class="hidden">Direccion:</label>
                 <span id="message-direction" class="error"></span>
             </div>
             <div class="group">
-                <input type="text" id="phone" onkeypress="return validateOnlyNumbers(event)" maxlength="10"/>
+                <input type="text" id="phone" class="check" onkeypress="return validateOnlyNumbers(event)" maxlength="10"/>
                 <span class="bar"></span>
-                <label>Telefono:</label>
+                <label class="hidden">Telefono:</label>
                 <span id="message-phone" class="error"></span>
             </div>
             <div class="group">
-                <input type="text" id="date" oninput="return validateDate()" onkeypress="return checkDate(event)" maxlength="10"/>
+                <input type="text" id="date" class="check" oninput="return validateDate()" onkeypress="return checkDate(event)" maxlength="10"/>
                 <span class="bar"></span>
-                <label>Fecha nacimiento:</label>
+                <label class="hidden">Fecha nacimiento:</label>
                 <span id="message-date" class="error"></span>
             </div>
 
             <div class="group">
-                <input type="text" id="email" oninput="return validateEmail()"/>
+                <input type="text" id="email" class="check" oninput="return validateEmail()"/>
                 <span class="bar"></span>
-                <label>Correo Electronico:</label>
+                <label class="hidden">Correo Electronico:</label>
                 <span id="message-email" class="error"></span>
             </div>
             <div class="group">
-                <input type="password" id="password" oninput="return validatePassword()"/>
+                <input type="password" id="password" class="check" oninput="return validatePassword()"/>
                 <span class="bar"></span>
-                <label>Contraseña:</label>
+                <label class="hidden">Contraseña:</label>
                 <span id="message-password" class="error"></span>
             </div>
             <div class="group btn-group">
